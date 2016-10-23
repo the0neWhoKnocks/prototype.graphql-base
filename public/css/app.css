@@ -1,0 +1,10 @@
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
+pre {
+  width: 100%;
+  padding: 1em;
+  border: solid 1px #ccc;
+  overflow-x: auto;
+}

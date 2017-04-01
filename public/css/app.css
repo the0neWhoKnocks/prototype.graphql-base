@@ -2,9 +2,45 @@
   box-sizing: border-box;
 }
 
+body,
+select {
+  font: 16px Helvetica,Arial;
+}
+
+select {
+  padding: 0.5em;
+}
+
+option {
+  padding: 0.5em;
+}
+
 pre {
   width: 100%;
   padding: 1em;
   border: solid 1px #ccc;
   overflow-x: auto;
+}
+
+.link-btn {
+  color: #000;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  border: solid 2px #ccc;
+  border-radius: 0.5em;
+  background: #eee;
+  display: inline-block;
+  position: relative;
+}
+.link-btn:not(:first-of-type) {
+  margin-left: 1em;
+}
+.link-btn:not(:first-of-type)::before {
+  content: '';
+  width: 2px;
+  height: 100%;
+  position: absolute;
+  background: #ccc;
+  top: 0;
+  left: -0.75em;
 }

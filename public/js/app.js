@@ -24,7 +24,7 @@ function handleUserSelect(ev){
         var userQueryEl = document.querySelector('#userQuery');
         var userDataEl = document.querySelector('#userData');
         
-        userQueryEl.innerHTML = '<a href="'+ userQuery +'">User query</a><br><br>';
+        userQueryEl.innerHTML = '<a class="link-btn" href="'+ userQuery +'" target="_blank">View User Query</a><br><br>';
         
         if( data.length ){
           userDataEl.innerHTML = 
@@ -54,7 +54,7 @@ function initApp(users){
     userOpts += '<option value="'+ user.email +'">'+ user.name +'</option>';
   }
   
-  appBody.innerHTML = '<a href="'+ graphqlLoc +'">GraphiQL</a> | <a href="'+ usersQuery +'">User\'s query</a><br><br><select id="userSelect"><option>Select User</option>'+ userOpts +'</select><br><br><span id="userQuery"></span><pre id="userData"></pre>';
+  appBody.innerHTML = '<a class="link-btn" href="'+ graphqlLoc +'" target="_blank">Query Builder</a><a class="link-btn" href="'+ usersQuery +'" target="_blank">View User\'s Query</a><br><br><select id="userSelect"><option>Select User</option>'+ userOpts +'</select><br><br><span id="userQuery"></span><pre id="userData"></pre>';
   
   setupUserSelect();
 }

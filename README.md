@@ -4,11 +4,19 @@ A basic GraphQL prototype with simple backend &amp; frontend examples.
 
 ---
 
-# Install
+## Install
 
 ```
 npm i
-node server
 ```
 
-Then navigate to http://localhost:4000
+---
+
+## Start
+
+```
+npm start
+```
+
+Then navigate to http://localhost:4000 for a simple UI that demonstrates how
+queries are formatted and sent to GraphQL.

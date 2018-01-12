@@ -24,10 +24,9 @@ var root = {
     var users = data.users();
     
     if(filter){
-      console.log('[ FILTER ]', filter);
-      
       switch(typeof filter){
         case 'object' :
+          if( Object.keys(filter).length ) console.log('[ FILTER ]', filter);
           var matchedUsers = [];
           
           for(var i in users){
@@ -37,9 +36,8 @@ var root = {
             for(var key in filter){
               var val = filter[key];
               
-              console.log(' -', key, val, user);
-              
               if( user[key] === val ){
+                console.log(JSON.stringify(user, null, 2));
                 matches.push(true);
                 break;
               }
@@ -87,4 +85,4 @@ app.use('/graphql', graphqlHTTP({
 app.use('/', function(req, res){
   res.sendFile(__dirname +'/index.html');
 });
-app.listen(4000, () => console.log('Now browse to localhost:4000/graphql'));
+app.listen(4000, () => console.log('Now browse to http://localhost:4000/'));

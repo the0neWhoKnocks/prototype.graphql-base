@@ -2,6 +2,8 @@
 
 A basic GraphQL prototype with simple backend &amp; frontend examples.
 
+![graphql-proto1](https://user-images.githubusercontent.com/344140/34897666-1ff07400-f7a4-11e7-8c19-a12d5647ebbf.gif)
+
 ---
 
 ## Install

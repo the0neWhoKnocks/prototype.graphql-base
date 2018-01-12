@@ -8,23 +8,23 @@ var opts = {
   method: 'GET',
   headers: headers
 };
-var userQuery;
+var userQuery, userQueryEl, userDataEl;
 
 // =============================================================================
 
 function handleUserSelect(ev){
-  var queryData = '{ users(email: "'+ ev.target.value +'") { name, first, last, email, password } }';
-  userQuery = api + encodeURIComponent(queryData);
-  var req = new Request(userQuery, opts);
+  var selectionValue = ev.target.value;
   
-  fetch(req)
+  if( selectionValue !== '' ){
+    var queryData = '{ users(email: "'+ selectionValue +'") { name, first, last, email, password } }';
+    userQuery = api + encodeURIComponent(queryData);
+    var req = new Request(userQuery, opts);
+    
+    fetch(req)
     .then(function(resp){
       resp.json().then(function(json){
         var data = json.data.users;
-        var userQueryEl = document.querySelector('#userQuery');
-        var userDataEl = document.querySelector('#userData');
-        
-        userQueryEl.innerHTML = '<a class="link-btn" href="'+ userQuery +'" target="_blank">View User Query</a><br><br>';
+        userQueryEl.innerHTML = '<a class="link-btn" href="'+ userQuery +'" target="_blank">View User Query</a>';
         
         if( data.length ){
           userDataEl.innerHTML = 
@@ -36,6 +36,11 @@ function handleUserSelect(ev){
         }
       });
     });
+  }
+  else{
+    userQueryEl.innerHTML = '';
+    userDataEl.innerHTML = '';
+  }
 }
 
 function setupUserSelect(){
@@ -54,7 +59,25 @@ function initApp(users){
     userOpts += '<option value="'+ user.email +'">'+ user.name +'</option>';
   }
   
-  appBody.innerHTML = '<a class="link-btn" href="'+ graphqlLoc +'" target="_blank">Query Builder</a><a class="link-btn" href="'+ usersQuery +'" target="_blank">View User\'s Query</a><br><br><select id="userSelect"><option>Select User</option>'+ userOpts +'</select><br><br><span id="userQuery"></span><pre id="userData"></pre>';
+  appBody.innerHTML = 
+    '<p>'+
+      "Select a user from the below drop-down to view the CURL request (if you "+
+      "don't want to utilize AJAX), and the request's JSON result. You can then "+
+      "click the <b>View User Query</b> button to see the formatting in GraphiQL. "+
+      "The <b>Query Builder</b> takes you to an empty GraphiQL instance, and the <b>View "+
+      "User's Query</b> button shows what's needed to get a list of users within GraphiQL"+
+    '</p>'+
+    '<select id="userSelect">'+
+      '<option value="">Select User</option>'+
+      userOpts +
+    '</select>'+
+    '<span id="userQuery" class="user-query"></span>'+
+    '<pre id="userData"></pre>'+
+    '<a class="link-btn" href="'+ graphqlLoc +'" target="_blank">Query Builder</a>'+
+    '<a class="link-btn" href="'+ usersQuery +'" target="_blank">View User\'s Query</a>';
+    
+  userQueryEl = document.querySelector('#userQuery');
+  userDataEl = document.querySelector('#userData');
   
   setupUserSelect();
 }

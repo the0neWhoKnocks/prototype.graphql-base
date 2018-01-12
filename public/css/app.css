@@ -17,9 +17,11 @@ option {
 
 pre {
   width: 100%;
+  color: #bef1e5;
   padding: 1em;
   border: solid 1px #ccc;
   overflow-x: auto;
+  background: #000;
 }
 
 .link-btn {
@@ -43,4 +45,10 @@ pre {
   background: #ccc;
   top: 0;
   left: -0.75em;
+}
+
+.user-query {
+  margin-left: 0.5em;
+  display: inline-block;
+  vertical-align: top;
 }
